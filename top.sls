@@ -1,4 +1,5 @@
 base:
   '*':
-    - jenkins-server
-    - nginx
+    - tools.maven.installed
+    - jenkins.installed
+    - nginx.installed
