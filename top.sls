@@ -1,0 +1,4 @@
+base:
+  '*':
+    - jenkins-server
+    - nginx
