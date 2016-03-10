@@ -1,6 +1,18 @@
 include:
   - users.present
 
+install_openssl:
+  pkg.installed:
+    - pkgs:
+       - openssl
+
+generate_key_and_crt:
+  cmd.run:
+    - name: openssl req -new -newkey rsa:4096 -days 3650  -nodes -x509 -subj "/C=NO/ST=Hordaland/L=Bergen/O=Dis/CN=www.example.com" -keyout /etc/nginx/ssl/nginx.key  -out /etc/nginx/ssl/nginx.cert 
+    - cwd: /etc/nginx/ssl
+    - require:
+      - pkg: nginx.package
+
 nginx.package:
   pkg.installed:
     - pkgs:
@@ -15,12 +27,14 @@ nginx.package:
       - file: /etc/nginx/htpasswd
     - require:
       - file: jenkins-config
-      - file: htpasswd-config 
+      - file: htpasswd-config
+
 remove-default-sites:
   file.absent:
     - name: /etc/nginx/sites-enabled/default
     - require:
       - pkg: nginx.package
+
 /etc/nginx/ssl:
     file.directory:
     - user: nginx-user
@@ -32,7 +46,7 @@ remove-default-sites:
         - group
         - mode
     - require:
-      - service: nginx
+      - pkg: nginx.package
 
 jenkins-config:
   file.managed:
@@ -41,6 +55,8 @@ jenkins-config:
     - group: build
     - user: nginx-user
     - mode: 640
+    - require:
+      - cmd: generate_key_and_crt
 htpasswd-config:
   file.managed:
     - name : /etc/nginx/htpasswd
