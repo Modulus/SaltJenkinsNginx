@@ -9,6 +9,7 @@ generate_ssh_keys:
       - user: nginx-user
       - file: create_key_directory
       - pkg: nginx.package
+    - unless: cat /srv/salt/keys/.id_rsa
 
 create_key_directory:
   file.directory:

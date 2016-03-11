@@ -4,3 +4,4 @@ include:
   - jenkins.removed
   - tools.java.removed
   - tools.maven.removed
+  - tools.docker.removed 
