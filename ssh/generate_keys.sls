@@ -4,7 +4,7 @@ include:
 
 generate_ssh_keys:
   cmd.run:
-    - name: ssh-keygen -b 2048 -t rsa -f /srv/salt/keys/.id_rsa -q -N ""
+    - name: ssh-keygen -C "nginx-user" -b 2048 -t rsa -f /srv/salt/keys/.id_rsa -q -N ""
     - require:
       - user: nginx-user
       - file: create_key_directory
