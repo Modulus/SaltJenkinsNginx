@@ -5,3 +5,4 @@ base:
     - nginx.installed-secure-ssl
     - ssh.generate_keys
     - tools.docker.installed
+    - tools.node.installed
