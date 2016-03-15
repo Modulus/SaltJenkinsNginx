@@ -1,5 +1,5 @@
 node.installed:
   pkg.installed:
     - pkgs:
-      - nodejs
+      - nodejs-legacy
       - npm 
