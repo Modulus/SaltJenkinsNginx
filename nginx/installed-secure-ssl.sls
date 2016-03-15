@@ -13,7 +13,7 @@ generate_key_and_crt:
     - cwd: /etc/nginx/ssl
     - require:
       - pkg: nginx.package
-    - unless: /etc/nginx/ssl/nginx.key
+    - unless: cat /etc/nginx/ssl/nginx.key
 
 
 /etc/nginx/ssl:
