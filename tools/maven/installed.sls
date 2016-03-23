@@ -1,6 +1,3 @@
-include:
-  - tools.java.installed
-
 maven.installed:
   pkg.installed:
     - pkgs:

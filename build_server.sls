@@ -1,0 +1,12 @@
+include:
+  - tools.java.installed
+  - tools.maven.installed
+  - tools.gradle
+  - tools.groovy
+  - tools.scala
+  - tools.docker.installed
+  - tools.python.installed
+  - tools.node.installed
+  - jenkins.installed
+  - users.present
+  - nginx.installed-secure-ssl.sls

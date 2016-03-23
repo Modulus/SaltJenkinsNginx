@@ -1,7 +1,3 @@
-include:
-  - users.present
-  - nginx.installed
-
 generate_ssh_keys:
   cmd.run:
     - name: ssh-keygen -C "nginx-user" -b 2048 -t rsa -f /srv/salt/keys/.id_rsa -q -N ""

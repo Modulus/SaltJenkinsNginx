@@ -1,17 +1,28 @@
-python-pip:
-  pkg.removed
 python-pip-whl:
   pkg.removed
 
+
+#easy_install.installed:
+#  pkg.installed:
+#    - pkgs:
+#      - python-setuptools
+#    - require:
+#      - pkg: python-pip-whl
+
+
 pip-install:
-  cmd.run:
-    - name: easy_install pip
+  pkg.installed:
+    - name: python-pip
+    - require:
+      - pkg: python-pip-whl
+    - stateful: True
+
+
 
 dockerpy:
   pip.installed:
     - name: docker-py
     - require:
-      - pkg: python-pip
       - pkg: python-pip-whl
-      - cmd: pip-install
-    - reload_modules: True
+      - pkg: pip-install
+    - unless: pip list | grep docker-py
