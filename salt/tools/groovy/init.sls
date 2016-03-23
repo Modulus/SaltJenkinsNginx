@@ -2,4 +2,4 @@ groovy.installed:
   pkg.installed:
     - name: groovy
     - require:
-      pkg: java.installed
+      - pkg: java.installed
