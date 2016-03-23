@@ -9,4 +9,4 @@ include:
   - tools.node.installed
   - jenkins.installed
   - users.present
-  - nginx.installed-secure-ssl.sls
+  - nginx.installed-secure-ssl
