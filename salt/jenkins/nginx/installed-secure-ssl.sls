@@ -7,14 +7,23 @@ jenkins.nginx.start:
     - watch:
       - pkg: nginx.installed
       - file: /etc/nginx/sites-enabled/jenkins.conf
-      - file: /etc/nginx/htpasswd
+      - file: jenkins.htpasswd-config
       - cmd: generate_key_and_crt
       - file: jenkins-config
     - require:
       - file: jenkins-config
-      - file: htpasswd-config
-      - file: /etc/nginx/sites-enabled/jenkins.conf
+      - file: jenkins.htpasswd-config
+      - file: jenkins-config
       - pkg: nginx.installed
+
+
+jenkins-config:
+  file.managed:
+    - name: /etc/nginx/sites-enabled/jenkins.conf
+    - source: salt://nginx/jenkins-secure.conf
+    - group: build
+    - user: nginx-user
+    - mode: 640
 
 jenkins.htpasswd-config:
   file.managed:
