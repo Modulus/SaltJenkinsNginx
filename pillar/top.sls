@@ -2,6 +2,6 @@ base:
   '*':
     - docker.repository
   'minion1':
-    - type: "build"
+    - servers.build
   'minion2':
-    - type: "web"
+    - servers.web
