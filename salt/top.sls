@@ -1,5 +1,5 @@
 base:
-  'minion1':
+  'type:build':
     - build_server
   #'minion2':
 
