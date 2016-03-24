@@ -1,4 +1,4 @@
 base:
-  'type:build':
+  'I@type:build':
     - build_server
 
