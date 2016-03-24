@@ -12,6 +12,7 @@ create_key_directory:
     - name: /srv/salt/keys/
     - user: nginx-user
     - group: build
+    - makedirs: True
     - dir_mode: 755
     - file_mode: 644
     - recurse:
