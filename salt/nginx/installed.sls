@@ -11,10 +11,3 @@ remove-default-sites:
     - require:
       - pkg: nginx.installed
 
-jenkins-config:
-  file.managed:
-    - name: /etc/nginx/sites-enabled/jenkins.conf
-    - source: salt://nginx/jenkins.conf
-    - group: build
-    - user: nginx-user
-    - mode: 640

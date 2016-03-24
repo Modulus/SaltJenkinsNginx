@@ -15,32 +15,17 @@ generate_key_and_crt:
     - require:
       - file: /etc/nginx/ssl
 
-nginx.start:
-  service.running:
-    - name: nginx
-    - watch:
-      - pkg: nginx.installed
-      - file: /etc/nginx/sites-enabled/jenkins.conf
-      - file: /etc/nginx/htpasswd
-      - cmd: generate_key_and_crt
-      - file: jenkins-config
-    - require:
-      - file: jenkins-config
-      - file: htpasswd-config
-      - file: /etc/nginx/sites-enabled/jenkins.conf
-      - pkg: nginx.installed
-
-htpasswd-config:
-  file.managed:
-    - name : /etc/nginx/htpasswd
-    - source: salt://nginx/htpasswd
-    - group: build
-    - user: nginx-user
-    - mode: 644
-    - require:
-      - pkg: nginx.installed
-
-
+#nginx.start:
+#  service.running:
+#    - name: nginx
+#    - watch:
+#      - pkg: nginx.installed
+#      - file: /etc/nginx/sites-enabled/site.conf
+#      - cmd: generate_key_and_crt
+#    - require:
+#      - file: /etc/nginx/sites-enabled/site.conf
+#      - pkg: nginx.installed
+#      - cmd: generate_key_and_crt
 
 /etc/nginx/ssl:
     file.directory:
