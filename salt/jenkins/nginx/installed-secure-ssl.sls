@@ -28,16 +28,3 @@ jenkins.htpasswd-config:
 
 
 
-/etc/nginx/ssl:
-    file.directory:
-    - user: nginx-user
-    - group: build
-    - dir_mode: 755
-    - file_mode: 644
-    - recurse:
-        - user
-        - group
-        - mode
-    - require:
-      - pkg: nginx.installed
-
