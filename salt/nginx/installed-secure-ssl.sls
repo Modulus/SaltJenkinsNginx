@@ -10,7 +10,7 @@ generate_key_and_crt:
   cmd.run:
     - name: openssl req -new -newkey rsa:4096 -days 3650  -nodes -x509 -subj "/C=NO/ST=Hordaland/L=Bergen/O=Dis/CN=www.example.com" -keyout /etc/nginx/ssl/nginx.key  -out /etc/nginx/ssl/nginx.cert
     - require:
-      - pkg: nginx.package
+      - pkg: nginx.installed
     - unless: cat /etc/nginx/ssl/nginx.key
     - require:
       - file: /etc/nginx/ssl
@@ -28,7 +28,17 @@ nginx.start:
       - file: jenkins-config
       - file: htpasswd-config
       - file: /etc/nginx/sites-enabled/jenkins.conf
-      - pkg: nginx.package
+      - pkg: nginx.installed
+
+htpasswd-config:
+  file.managed:
+    - name : /etc/nginx/htpasswd
+    - source: salt://nginx/htpasswd
+    - group: build
+    - user: nginx-user
+    - mode: 644
+    - require:
+      - pkg: nginx.installed
 
 
 
@@ -43,5 +53,5 @@ nginx.start:
         - group
         - mode
     - require:
-      - pkg: nginx.package
+      - pkg: nginx.installed
 

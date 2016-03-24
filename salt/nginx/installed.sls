@@ -1,4 +1,4 @@
-nginx.package:
+nginx.installed:
   pkg.installed:
     - pkgs:
       - nginx
