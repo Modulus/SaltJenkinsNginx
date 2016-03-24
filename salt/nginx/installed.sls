@@ -9,7 +9,7 @@ remove-default-sites:
   file.absent:
     - name: /etc/nginx/sites-enabled/default
     - require:
-      - pkg: nginx.package
+      - pkg: nginx.installed
 
 jenkins-config:
   file.managed:

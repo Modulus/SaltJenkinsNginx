@@ -38,7 +38,7 @@ jenkins.enabled:
   service.enabled:
     - name: jenkins
     - require:
-      - pkg: jenkins
+      - pkg: jenkins.installed
 
 jenkins.running:
   service.running:

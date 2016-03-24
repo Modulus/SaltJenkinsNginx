@@ -19,7 +19,7 @@ nginx.start:
   service.running:
     - name: nginx
     - watch:
-      - pkg: nginx.package
+      - pkg: nginx.installed
       - file: /etc/nginx/sites-enabled/jenkins.conf
       - file: /etc/nginx/htpasswd
       - cmd: generate_key_and_crt
