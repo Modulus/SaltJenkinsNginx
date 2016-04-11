@@ -1,0 +1,12 @@
+[submodule "formulas/haproxy-formula"]
+	path = formulas/haproxy-formula
+	url = https://github.com/saltstack-formulas/haproxy-formula.git
+[submodule "formulas/node-formula"]
+	path = formulas/node-formula
+	url = https://github.com/saltstack-formulas/node-formula.git
+[submodule "formulas/nginx-formula"]
+	path = formulas/nginx-formula
+	url = https://github.com/saltstack-formulas/nginx-formula.git
+[submodule "formulas/letsencrypt-formula"]
+	path = formulas/letsencrypt-formula
+	url = https://github.com/saltstack-formulas/letsencrypt-formula.git
