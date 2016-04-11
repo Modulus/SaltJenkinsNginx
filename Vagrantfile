@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+# certs are generated with salt-key --gen-keys="minionid"
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -15,14 +16,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     master_config.vm.provision :salt do |salt|
       salt.master_config = "etc/master"
-      salt.master_key = "etc/keys/master_minion.key"
-      salt.master_pub = "etc/keys/master_minion.crt"
-      salt.minion_key = "etc/keys/master_minion.key"
-      salt.minion_pub = "etc/keys/master_minion.crt"
+      salt.master_key = "etc/certs/master_minion.pem"
+      salt.master_pub = "etc/certs/master_minion.pub"
+      salt.minion_key = "etc/certs/master_minion.pem"
+      salt.minion_pub = "etc/certs/master_minion.pub"
       salt.seed_master = {
-                          "minion1" => "etc/keys/minion1.crt",
-                          "minion2" => "etc/keys/minion2.crt",
-                          "minion3" => "etc/keys/minion3.crt"
+                          "minion1" => "etc/certs/minion1.pub",
+                          "minion2" => "etc/certs/minion2.pub",
+                          "minion3" => "etc/certs/minion3.pub"
                          }
 
       salt.install_type = "stable"
@@ -41,8 +42,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "etc/minion1"
-      salt.minion_key = "etc/keys/minion1.key"
-      salt.minion_pub = "etc/keys/minion1.crt"
+      salt.minion_key = "etc/certs/minion1.pem"
+      salt.minion_pub = "etc/certs/minion1.pub"
       salt.install_type = "stable"
       salt.verbose = true
       salt.colorize = true
@@ -62,8 +63,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "etc/minion2"
       #salt.grains_config = "etc/grains/haproxy"
-      salt.minion_key = "etc/keys/minion2.key"
-      salt.minion_pub = "etc/keys/minion2.crt"
+      salt.minion_key = "etc/certs/minion2.pem"
+      salt.minion_pub = "etc/certs/minion2.pub"
       salt.install_type = "stable"
       salt.verbose = true
       salt.colorize = true
@@ -83,8 +84,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "etc/minion3"
       #salt.grains_config = "etc/grains/build"
-      salt.minion_key = "etc/keys/minion2.key"
-      salt.minion_pub = "etc/keys/minion2.crt"
+      salt.minion_key = "etc/certs/minion2.pem"
+      salt.minion_pub = "etc/certs/minion2.pub"
       salt.install_type = "stable"
       salt.verbose = true
       salt.colorize = true
