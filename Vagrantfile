@@ -84,8 +84,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "etc/minion3"
       #salt.grains_config = "etc/grains/build"
-      salt.minion_key = "etc/certs/minion2.pem"
-      salt.minion_pub = "etc/certs/minion2.pub"
+      salt.minion_key = "etc/certs/minion3.pem"
+      salt.minion_pub = "etc/certs/minion3.pub"
       salt.install_type = "stable"
       salt.verbose = true
       salt.colorize = true
