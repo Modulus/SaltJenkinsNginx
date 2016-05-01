@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :master do |master_config|
     master_config.vm.box = "ubuntu/trusty64"
     master_config.vm.host_name = 'saltmaster.local'
-    master_config.vm.network "private_network", ip: "192.168.50.20"
+    master_config.vm.network "private_network", ip: "192.168.51.20"
     master_config.vm.synced_folder "salt/", "/srv/salt"
     master_config.vm.synced_folder "pillar/", "/srv/pillar"
     master_config.vm.synced_folder "formulas/", "/srv/formulas"
@@ -28,17 +28,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       salt.install_type = "stable"
       salt.install_master = true
-      salt.no_minion = true
+      salt.no_minion = false
       salt.verbose = true
       salt.colorize = true
-      salt.bootstrap_options = "-D -P -c  /tmp"
+      salt.run_overstate = true
+      salt.bootstrap_options = "-P"
     end
   end
 
   config.vm.define :minion1 do |minion_config|
     minion_config.vm.box = "ubuntu/trusty64"
     minion_config.vm.host_name = 'saltminion1.local'
-    minion_config.vm.network "private_network", ip: "192.168.50.21"
+    minion_config.vm.network "private_network", ip: "192.168.51.21"
 
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "etc/minion1"
@@ -47,7 +48,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.install_type = "stable"
       salt.verbose = true
       salt.colorize = true
-      salt.bootstrap_options = "-D -P -c /tmp"
+      salt.bootstrap_options = "-P -c /tmp"
     end
   end
 
@@ -58,7 +59,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Comment out the above line as well
     #minion_config.vm.box = "chef/centos-6.5"
     minion_config.vm.host_name = 'saltminion2.local'
-    minion_config.vm.network "private_network", ip: "192.168.50.22"
+    minion_config.vm.network "private_network", ip: "192.168.51.22"
 
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "etc/minion2"
@@ -68,7 +69,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.install_type = "stable"
       salt.verbose = true
       salt.colorize = true
-      salt.bootstrap_options = "-D -P -c /tmp"
+      salt.bootstrap_options = "-P -c /tmp"
     end
   end
 
@@ -79,7 +80,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Comment out the above line as well
     #minion_config.vm.box = "chef/centos-6.5"
     minion_config.vm.host_name = 'saltminion3.local'
-    minion_config.vm.network "private_network", ip: "192.168.50.23"
+    minion_config.vm.network "private_network", ip: "192.168.51.23"
 
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "etc/minion3"
@@ -89,7 +90,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.install_type = "stable"
       salt.verbose = true
       salt.colorize = true
-      salt.bootstrap_options = "-D -P -c /tmp"
+      salt.bootstrap_options = "-P -c /tmp"
     end
   end
 

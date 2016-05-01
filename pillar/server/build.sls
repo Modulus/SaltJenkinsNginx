@@ -1,1 +1,2 @@
-type: build
+roles: 
+  - build
