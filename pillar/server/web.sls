@@ -1,1 +1,2 @@
-type: web
+roles:
+  - web
