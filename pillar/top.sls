@@ -2,7 +2,6 @@ base:
   '*':
     - docker.repository
   'minion1':
-    - server.build
-    - letsencrypt 
+    - jenkins
   'minion2':
     - server.web

@@ -73,7 +73,7 @@ id: minion1
 
 grains:
   roles:
-    - web
+    - build
 
 # Where cache data goes.
 #cachedir: /var/cache/salt/minion
