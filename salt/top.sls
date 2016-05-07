@@ -1,5 +1,5 @@
 base:
   'G@roles:build':
-    - jenkins
+    - build_server
   #'G@roles:web':
   #  - web_server
