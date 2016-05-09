@@ -1,10 +1,12 @@
 jenkins:
   lookup:
-    port: 80
+    port: 8080
+    jenkins_port: 8080
     home: /usr/local/jenkins
     user: jenkins
     group: www-data
-    server_name: localhost
+    cli_path: '/usr/local/jenkins/jenkins-cli.jar'
+    #server_name: localhost
     plugins:
       installed:
         - git
