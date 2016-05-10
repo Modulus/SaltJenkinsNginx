@@ -27,8 +27,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.minion_pub = "etc/certs/master_minion.pub"
       salt.seed_master = {
                           "minion1" => "etc/certs/minion1.pub",
-                          "minion2" => "etc/certs/minion2.pub",
-                          "minion3" => "etc/certs/minion3.pub"
+                          #{}"minion2" => "etc/certs/minion2.pub",
+                          #{}"minion3" => "etc/certs/minion3.pub"
 
                          }
 
