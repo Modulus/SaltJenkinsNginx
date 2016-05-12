@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.minion_pub = "etc/certs/master_minion.pub"
       salt.seed_master = {
                           "minion1" => "etc/certs/minion1.pub",
-                          #{}"minion2" => "etc/certs/minion2.pub",
+                          "minion2" => "etc/certs/minion2.pub",
                           #{}"minion3" => "etc/certs/minion3.pub"
 
                          }
@@ -68,33 +68,34 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  # config.vm.define :minion2 do |minion_config|
-  #   minion_config.landrush.enabled = true
-  #   minion_config.landrush.tld = "saltminion2.local"
-  #
-  #   minion_config.vm.box = "ubuntu/trusty64"
-  #   minion_config.ssh.insert_key = false
-  #   #minion_config.vm.box_version = "<= 20160127.0.0"
-  #
-  #   # The following line can be uncommented to use Centos
-  #   # instead of Ubuntu.
-  #   # Comment out the above line as well
-  #   #minion_config.vm.box = "chef/centos-6.5"
-  #   minion_config.vm.hostname = "saltminion2.local"
-  #   minion_config.landrush.host "saltminion2.local", "192.168.51.12"
-  #   minion_config.vm.network "private_network", ip: "192.168.51.12"
-  #   #minion_config.vm.network "public_network", ip: "192.168.50.12"
-  #
-  #   minion_config.vm.provision :salt do |salt|
-  #     salt.minion_config = "etc/minion2"
-  #     salt.minion_key = "etc/certs/minion2.pem"
-  #     salt.minion_pub = "etc/certs/minion2.pub"
-  #     salt.install_type = "stable"
-  #     salt.verbose = true
-  #     salt.colorize = true
-  #     salt.bootstrap_options = "-P -c /tmp"
-  #   end
-  # end
+  config.vm.define :minion2 do |minion_config|
+    minion_config.landrush.enabled = true
+    minion_config.landrush.tld = "saltminion2.local"
+
+    #minion_config.vm.box = "ubuntu/trusty64"
+    minion_config.vm.box = "centos/7"
+    minion_config.ssh.insert_key = false
+    #minion_config.vm.box_version = "<= 20160127.0.0"
+
+    # The following line can be uncommented to use Centos
+    # instead of Ubuntu.
+    # Comment out the above line as well
+    #minion_config.vm.box = "chef/centos-6.5"
+    minion_config.vm.hostname = "saltminion2.local"
+    minion_config.landrush.host "saltminion2.local", "192.168.51.12"
+    minion_config.vm.network "private_network", ip: "192.168.51.12"
+    #minion_config.vm.network "public_network", ip: "192.168.50.12"
+
+    minion_config.vm.provision :salt do |salt|
+      salt.minion_config = "etc/minion2"
+      salt.minion_key = "etc/certs/minion2.pem"
+      salt.minion_pub = "etc/certs/minion2.pub"
+      salt.install_type = "stable"
+      salt.verbose = true
+      salt.colorize = true
+      salt.bootstrap_options = "-P -c /tmp"
+    end
+  end
   #
   # config.vm.define :minion3 do |minion_config|
   #   minion_config.landrush.enabled = true

@@ -13,3 +13,9 @@
 [submodule "formulas/jenkins-formula"]
 	path = formulas/jenkins-formula
 	url = https://github.com/saltstack-formulas/jenkins-formula.git
+[submodule "formulas/nexus-formula"]
+	path = formulas/nexus-formula
+	url = git@github.com:Modulus/nexus-formula.git
+[submodule "formulas/sun-java-formula"]
+	path = formulas/sun-java-formula
+	url = https://github.com/saltstack-formulas/sun-java-formula.git

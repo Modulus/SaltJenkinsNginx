@@ -4,4 +4,4 @@ base:
   'minion1':
     - jenkins
   'minion2':
-    - server.web
+    - nexus
