@@ -15,6 +15,7 @@ install.unzip:
       - cmd: jenkins.install.plugins
 
 # Installing plugins with bash script, the formula way is not working
+#TODO: Loop through a list of pillar data here instead
 jenkins.install.plugins:
   cmd.run:
     - name: /var/lib/jenkins/install_plugins.sh workflow-aggregator github

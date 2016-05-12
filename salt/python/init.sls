@@ -1,15 +1,6 @@
 python-pip-whl:
   pkg.removed
 
-
-#easy_install.installed:
-#  pkg.installed:
-#    - pkgs:
-#      - python-setuptools
-#    - require:
-#      - pkg: python-pip-whl
-
-
 pip-install:
   pkg.installed:
     - name: python-pip

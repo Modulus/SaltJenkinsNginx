@@ -349,8 +349,8 @@ file_roots:
     - /srv/salt
     - /srv/formulas/haproxy-formula
     - /srv/formulas/jenkins-formula
-    - /srv/formulas/nexus-formula
-    - /srv/formulas/sun-java-formula
+    #- /srv/formulas/nexus-formula
+    #- /srv/formulas/sun-java-formula
 
 # The hash_type is the hash to use when discovering the hash of a file on
 # the master server. The default is md5, but sha1, sha224, sha256, sha384
