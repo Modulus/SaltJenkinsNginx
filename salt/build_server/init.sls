@@ -1,6 +1,7 @@
 include:
   - jenkins
   - build_server.ssh
+  - hosts
 
 extend:
   jenkins:
