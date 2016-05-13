@@ -82,7 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Comment out the above line as well
     #minion_config.vm.box = "chef/centos-6.5"
     minion_config.vm.hostname = "saltminion2.local"
-    minion_config.landrush.host "saltminion2.local", "192.168.51.12"
+    #minion_config.landrush.host "saltminion2.local", "192.168.51.12"
     minion_config.vm.network "private_network", ip: "192.168.51.12"
     #minion_config.vm.network "public_network", ip: "192.168.50.12"
     minion_config.vm.network "forwarded_port", guest: 8081, host: 8081, auto_correct: true
