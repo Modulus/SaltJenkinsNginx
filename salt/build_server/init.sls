@@ -5,7 +5,7 @@ include:
   - node
   - docker
 
-install.git:
+git.installed:
   pkg.installed:
     - name: git
 
@@ -14,6 +14,9 @@ extend:
     service:
       - watch:
         - cmd: jenkins.install.plugins
+        - group: add.jenkins.user.to.docker.group
+        - pkg: git.installed
+        - pkg: docker.installed
 
 install.unzip:
   pkg.installed:
@@ -36,7 +39,11 @@ copy.install.script:
     - source: salt://build_server/install_plugins.sh
     - mode: 770
 
-
+add.jenkins.user.to.docker.group:
+  group.present:
+    - name: docker
+    - addusers:
+      - jenkins
 
         #- file: jenkins.pipeline.plugin
         #- file: jenkins.script.security.plugin

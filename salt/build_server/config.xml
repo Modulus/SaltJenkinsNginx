@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.1">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.2">
+    <script>node {
+   // Mark the code checkout &apos;stage&apos;....
+   stage &apos;Checkout&apos;
+
+   // Get some code from a GitHub repository
+   git url: &apos;https://github.com/randax/hello-world.git&apos;
+
+   // Mark the code build &apos;stage&apos;....
+   stage &apos;Npm install&apos;
+   // Run the maven build
+   sh &quot;npm install&quot;
+
+
+   stage &apos;Build Docker Image&apos;
+   sh &quot;docker build .&quot;
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+</flow-definition>
