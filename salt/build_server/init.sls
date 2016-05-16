@@ -3,6 +3,7 @@ include:
   - build_server.ssh
   - hosts
   - node
+  - docker
 
 install.git:
   pkg.installed:

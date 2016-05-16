@@ -15,9 +15,9 @@ docker.repository:
     - gpgkey: https://yum.dockerproject.org/gpg
     - gpgcheck: 1
 {% elif grains['os_family'] == 'Debian' %}
-  - name: deb https://apt.dockerproject.org/repo ubuntu-trusty main
-  - keyserver: hkp://p80.pool.sks-keyservers.net:80
-  - keyid: 58118E89F3A912897C070ADBF76221572C52609D
+    - name: deb https://apt.dockerproject.org/repo ubuntu-trusty main
+    - keyserver: hkp://p80.pool.sks-keyservers.net:80
+    - keyid: 58118E89F3A912897C070ADBF76221572C52609D
 {% endif %}
 
 # Remove old repo if it exists
