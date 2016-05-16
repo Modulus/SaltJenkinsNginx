@@ -2,6 +2,11 @@ include:
   - jenkins
   - build_server.ssh
   - hosts
+  - node
+
+install.git:
+  pkg.installed:
+    - name: git
 
 extend:
   jenkins:
