@@ -5,6 +5,8 @@ include:
 pull down nexus docker image:
   dockerng.image_present:
     - name: sonatype/nexus3
+    - require:
+      - pkg: docker.installed
 
 
 start nexus container:

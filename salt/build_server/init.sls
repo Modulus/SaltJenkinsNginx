@@ -17,6 +17,7 @@ extend:
         - group: add.jenkins.user.to.docker.group
         - pkg: git.installed
         - pkg: docker.installed
+        - file: copy.build.script
 
 install.unzip:
   pkg.installed:
@@ -38,6 +39,17 @@ copy.install.script:
     - name: /var/lib/jenkins/install_plugins.sh
     - source: salt://build_server/install_plugins.sh
     - mode: 770
+
+copy.build.script:
+  file.managed:
+    - name: /var/lib/jenkins/jobs/helloworld/config.xml
+    - source: salt://build_server/jobs/helloworld/config.xml
+    - makedirs: True
+    - mode: 770
+    - dirmode: 750
+    - user: jenkins
+    - require:
+      - pkg: jenkins
 
 add.jenkins.user.to.docker.group:
   group.present:
