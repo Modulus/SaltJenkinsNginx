@@ -23,10 +23,10 @@
    sh &quot;npm install&quot;
 
    stage &quot;Build docker image&quot;
-   sh &quot;docker build -t minion2/hello-world:latest .&quot;
+   sh &quot;docker build -t minion2:5000/hello-world:latest .&quot;
 
    stage &quot;Push docker image to registry&quot;
-   sh &quot;docker push minion2/hello-world:latest &quot;
+   sh &quot;docker push minion2:5000/hello-world:latest&quot;
 
 
 }</script>
