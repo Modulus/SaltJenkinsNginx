@@ -32,6 +32,7 @@ docker.installed:
     - require:
       - pkg: docker.dependencies
       - pkg: docker.purge.lxc-docker
+      - pkgrepo: docker.repository
 
 docker.service.start:
   service.running:
@@ -39,4 +40,6 @@ docker.service.start:
     - enable: True
     - reload: True
     - watch:
+      - pkg: docker.installed
+    - require:
       - pkg: docker.installed

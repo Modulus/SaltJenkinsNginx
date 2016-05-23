@@ -57,6 +57,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     minion_config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
 
 
+    minion_config.vm.provider "virtualbox" do |v|
+      v.memory = 2024
+      v.cpus = 2
+    end
+
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "etc/minion1"
       salt.minion_key = "etc/certs/minion1.pem"

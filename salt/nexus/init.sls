@@ -7,6 +7,8 @@ pull down nexus docker image:
     - name: sonatype/nexus3
     - require:
       - pkg: docker.installed
+      - service: docker.service.start
+      - pip: dockerpy
 
 
 start nexus container:
@@ -18,6 +20,9 @@ start nexus container:
     - restart_policy: always
     - require:
       - dockerng: pull down nexus docker image
+      - pkg: docker.installed
+      - service: docker.service.start
+      - pip: dockerpy
 #      - docker: create nexus3 volume container
 
 #create nexus3 volume container:

@@ -3,3 +3,7 @@ docker-registries:
     email: ""
     password: ""
     username: ""
+  #http://repository:8081/repository/docker:
+  #  email: ""
+  #  username: "admin"
+  #ß  password: "admin123"

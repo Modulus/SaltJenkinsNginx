@@ -1,4 +1,5 @@
 include:
+  - python
   - jenkins
   - build_server.ssh
   - hosts
@@ -32,13 +33,17 @@ jenkins.install.plugins:
     - name: /var/lib/jenkins/install_plugins.sh workflow-aggregator github
     - cwd: /var/lib/jenkins/
     - require:
+      - pkg: install.unzip
       - file: copy.install.script
+      - pkg: jenkins
 
 copy.install.script:
   file.managed:
     - name: /var/lib/jenkins/install_plugins.sh
     - source: salt://build_server/install_plugins.sh
     - mode: 770
+    - require:
+      - pkg: jenkins
 
 copy.build.script:
   file.managed:
@@ -56,6 +61,8 @@ add.jenkins.user.to.docker.group:
     - name: docker
     - addusers:
       - jenkins
+    - require:
+      - pkg: jenkins
 
         #- file: jenkins.pipeline.plugin
         #- file: jenkins.script.security.plugin
