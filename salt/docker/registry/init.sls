@@ -1,5 +1,5 @@
 include:
-  - tools.docker.installed
+  - docker
 
 pull.registry:
   dockerng.image_present:

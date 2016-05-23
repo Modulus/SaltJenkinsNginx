@@ -1,3 +1,6 @@
+include:
+  - python
+
 docker.dependencies:
   pkg.installed:
     - pkgs:
@@ -24,6 +27,7 @@ docker.repository:
 docker.purge.lxc-docker:
   pkg.purged:
     - name: lxc-docker
+
 
 docker.installed:
   pkg.installed:
