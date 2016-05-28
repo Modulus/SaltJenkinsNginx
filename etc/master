@@ -349,6 +349,7 @@ file_roots:
     - /srv/salt
     - /srv/formulas/haproxy-formula
     - /srv/formulas/jenkins-formula
+    - /srv/formulas/nginx-formula
     #- /srv/formulas/nexus-formula
     #- /srv/formulas/sun-java-formula
 

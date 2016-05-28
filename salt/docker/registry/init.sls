@@ -1,9 +1,13 @@
 include:
   - docker
-
+  - docker.registry.nginx
+  
 pull.registry:
   dockerng.image_present:
     - name: registry:2
+    - require:
+      - pkg: docker.installed
+
 
 run.docker.registry:
   dockerng.running:
@@ -12,4 +16,3 @@ run.docker.registry:
       - 5000:5000
     - require:
       - dockerng: pull.registry
-      - pkg: docker.installed

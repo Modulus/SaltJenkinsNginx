@@ -91,6 +91,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     minion_config.vm.network "private_network", ip: "192.168.51.12"
     #minion_config.vm.network "public_network", ip: "192.168.50.12"
     minion_config.vm.network "forwarded_port", guest: 8081, host: 8081, auto_correct: true
+    minion_config.vm.network "forwarded_port", guest: 5000, host: 5000, auto_correct: true
+
 
 
     minion_config.vm.provision :salt do |salt|
