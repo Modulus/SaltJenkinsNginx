@@ -3,6 +3,23 @@
 include:
   - nginx
 
+extend:
+  nginx:
+    service.running:
+      - name: nginx
+      - require:
+        - pkg: nginx
+      - watch:
+        - file: nginx.tls.certs.directory
+        - cmd:  nginx.tls.certificates
+        #- file: /etc/nginx/sites-available/registry.conf
+        - file: /etc/nginx/nginx.conf
+        #- file: symlink.registry.conf
+        {% if grains['os_family'] == 'RedHat' %}
+        - file: /etc/nginx/sites-enabled
+        - file: /etc/nginx/sites-available
+        {% endif %}
+
 nginx.tls.certs.directory:
     file.directory:
     - name: {{nginx.cert_location}}
@@ -27,9 +44,11 @@ nginx.tls.certificates:
     - stateful: True
     - require:
       - file: nginx.tls.certs.directory
-      - file: /etc/nginx/sites-available/registry.conf
+      - file: /etc/nginx/nginx.conf
+      #- file: /etc/nginx/sites-available/registry.conf
 
-/etc/nginx/sites-available/registry.conf:
+
+/etc/nginx/nginx.conf:
   file.managed:
     - source: salt://docker/registry/nginx/registry.conf
     - mode: 440
@@ -37,21 +56,30 @@ nginx.tls.certificates:
     - template: jinja
     - require:
       - pkg: nginx
-      {% if grains['os_family'] == 'RedHat'%}
-      - file: /etc/nginx/sites-enabled
-      - file: /etc/nginx/sites-available
-      {% endif %}
 
-symlink.registry.conf:
-  file.symlink:
-    - name: /etc/nginx/sites-enabled/registry.conf
-    - target: /etc/nginx/sites-available/registry.conf
-    - mode: 440
-    {% if grains['os_family'] == 'RedHat'%}
-    - require:
-      - file: /etc/nginx/sites-enabled
-      - file: /etc/nginx/sites-available
-    {% endif %}
+# /etc/nginx/sites-available/registry.conf:
+#   file.managed:
+#     - source: salt://docker/registry/nginx/registry.conf
+#     - mode: 440
+#     - makedirs: True
+#     - template: jinja
+#     - require:
+#       - pkg: nginx
+#       {% if grains['os_family'] == 'RedHat'%}
+#       - file: /etc/nginx/sites-enabled
+#       - file: /etc/nginx/sites-available
+#       {% endif %}
+#
+# symlink.registry.conf:
+#   file.symlink:
+#     - name: /etc/nginx/sites-enabled/registry.conf
+#     - target: /etc/nginx/sites-available/registry.conf
+#     - mode: 440
+#     {% if grains['os_family'] == 'RedHat'%}
+#     - require:
+#       - file: /etc/nginx/sites-enabled
+#       - file: /etc/nginx/sites-available
+#     {% endif %}
 
 
 # docker.registry.certificate:
