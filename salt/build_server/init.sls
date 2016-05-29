@@ -30,7 +30,7 @@ install.unzip:
 #TODO: Loop through a list of pillar data here instead
 jenkins.install.plugins:
   cmd.run:
-    - name: /var/lib/jenkins/install_plugins.sh workflow-aggregator github
+    - name: /var/lib/jenkins/install_plugins.sh workflow-aggregator github skip-certificate-check
     - cwd: /var/lib/jenkins/
     - require:
       - pkg: install.unzip
@@ -50,6 +50,7 @@ copy.build.script:
     - name: /var/lib/jenkins/jobs/helloworld/config.xml
     - source: salt://build_server/jobs/helloworld/config.xml
     - makedirs: True
+    - template: jinja
     - mode: 770
     - dirmode: 750
     - user: jenkins
