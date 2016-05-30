@@ -11,14 +11,14 @@ extend:
 
 pull.registry:
   dockerng.image_present:
-    - name: registry:2.4.1
+    - name: registry:2
     - require:
       - pkg: docker.installed
 
 
 run.docker.registry:
   dockerng.running:
-    - image: registry:2.4.1
+    - image: registry:2
     - name: registry
     - port_bindings:
       - 5000:5000
