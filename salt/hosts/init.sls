@@ -1,5 +1,5 @@
 
-{% for server, addrs in salt['mine.get']('G@roles:repository', 'network.ip_addrs', expr_form='compound').items() %}
+{% for server, addrs in salt['mine.get']('G@roles:repository or G@roles:build', 'network.ip_addrs', expr_form='compound').items() %}
 {% if server != salt['grains.get']('id') %}
 {{server}}-present:
   host.present:

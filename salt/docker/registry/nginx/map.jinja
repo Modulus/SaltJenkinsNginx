@@ -1,0 +1,15 @@
+{% set nginx = salt['grains.filter_by']({
+    'default': {
+        'config_location': '/etc/nginx/sites-available',
+        'config_symlink': '/etc/nginx/sites-enabled',
+        'cert_name': 'registry',
+        'cert_location' : '/etc/nginx',
+        'config_file': 'salt://docker/registry/nginx/registry.conf',
+        'domain': 'minion2',
+        'c': 'NO',
+        'st': 'Hordaland',
+        'l': 'Bergen',
+        'o': 'Dis'
+
+    },
+}, merge=salt['pillar.get']('docker:nginx:lookup')) %}
