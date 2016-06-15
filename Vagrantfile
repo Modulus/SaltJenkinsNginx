@@ -15,9 +15,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #master_config.landrush.host "saltmaster.local", "192.168.51.10"
     #master_config.vm.network "public_network", ip: "192.168.50.10"
     master_config.vm.network "private_network", ip: "192.168.51.10"
-    master_config.vm.synced_folder "salt/", "/srv/salt"
-    master_config.vm.synced_folder "pillar/", "/srv/pillar"
-    master_config.vm.synced_folder "formulas", "/srv/formulas"
+    master_config.vm.synced_folder "salt/", "/srv/salt", type: "virtualbox"
+    master_config.vm.synced_folder "pillar/", "/srv/pillar", type: "virtualbox"
+    master_config.vm.synced_folder "formulas", "/srv/formulas", type: "virtualbox"
 
     master_config.vm.provision :salt do |salt|
       salt.master_config = "etc/master"
@@ -91,6 +91,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     minion_config.vm.network "private_network", ip: "192.168.51.12"
     #minion_config.vm.network "public_network", ip: "192.168.50.12"
     minion_config.vm.network "forwarded_port", guest: 8081, host: 8081, auto_correct: true
+    #Fix for windows rsync errors
+    minion_config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
 
 
     minion_config.vm.provision :salt do |salt|
