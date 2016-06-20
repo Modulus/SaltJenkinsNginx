@@ -42,8 +42,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :minion1 do |minion_config|
-    minion_config.landrush.enabled = true
-    minion_config.landrush.tld = "saltminion1.local"
+    #minion_config.landrush.enabled = true
+    #minion_config.landrush.tld = "saltminion1.local"
 
     minion_config.ssh.insert_key = false
     minion_config.vm.box = "ubuntu/trusty64"
@@ -74,8 +74,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :minion2 do |minion_config|
-    minion_config.landrush.enabled = true
-    minion_config.landrush.tld = "saltminion2.local"
+    #minion_config.landrush.enabled = true
+    #minion_config.landrush.tld = "saltminion2.local"
 
     #minion_config.vm.box = "ubuntu/trusty64"
     minion_config.vm.box = "centos/7"
