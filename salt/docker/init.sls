@@ -42,7 +42,6 @@ docker.service.start:
   service.running:
     - name: docker
     - enable: True
-    - reload: True
     - watch:
       - pkg: docker.installed
     - require:

@@ -32,11 +32,11 @@
 
        stage &apos;Build image&apos;
        //stage &quot;Build docker image&quot;
-       sh &quot;docker build -t minion2:443/hello-world:latest .&quot;
+       sh &quot;docker build -t localhost:5000/hello-world:latest .&quot;
 
        stage &quot;Push image&quot;
        //stage &quot;Push docker image to registry&quot;
-       sh &quot;docker push minion2:443/hello-world:latest&quot;
+       sh &quot;docker push localhost:5000/hello-world:latest&quot;
 
 
     }</script>

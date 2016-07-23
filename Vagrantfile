@@ -94,6 +94,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #Fix for windows rsync errors
     minion_config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
     minion_config.vm.network "forwarded_port", guest: 5555, host: 5555, auto_correct: true
+    minion_config.vm.network "forwarded_port", guest: 5000, host: 5000, auto_correct: true
 
 
 
